@@ -4,7 +4,7 @@ using namespace std;
 char Room::input[150];
 char *Room::item_ptr;
 vector<Item*> Room::inventory;
-void Room::printItem(){
+void Room::printItem(){//prints items in room and picks up
 	cout << "Items in room:"<<endl;
 	for(auto i = item_list.begin(); i!=item_list.end(); ++i){
 		cout << (*i)->name<<endl;
@@ -17,7 +17,7 @@ void Room::printItem(){
 		item_ptr = strtok(NULL,",");
 	}
 }
-void Room::dropItem(char * item_name){
+void Room::dropItem(char * item_name){//drop items
 	for(auto i = inventory.begin(); i != inventory.end(); ++i){
 		if(!strcmp(item_name, (*i)->name)){
 			item_list.push_back(*i);
@@ -26,7 +26,7 @@ void Room::dropItem(char * item_name){
 		}
 	}
 }
-void Room::pickItem(char * item_name){
+void Room::pickItem(char * item_name){//pick up items with static inventory vector
 	for(auto i = item_list.begin(); i != item_list.end();++i){
 		if(!strcmp(item_name, (*i)->name)){
 			inventory.push_back(*i);
@@ -35,7 +35,7 @@ void Room::pickItem(char * item_name){
 		}
 	}
 }
-void Room::printInv(){
+void Room::printInv(){//print inventory
 	cout << "Items in Inventory: "<<endl;
 	for(auto i = this->inventory.begin(); i!=inventory.end();++i){
 		cout << (*i)->name<<endl;
@@ -48,7 +48,7 @@ void Room::printInv(){
 		item_ptr = strtok(NULL, ",");
 	}
 }
-Room* Room::nextRoom(){
+Room* Room::nextRoom(){//goes to next room pick up drop and move between rooms
 	cout << "You are in "<<i<<j<<endl;
 	if(!inventory.empty()){printInv();}
 	if(j==i and j ==3 and item_list.size()==5){                                                                                                                                                                                cout << "You have succesfully delivered all the item to room 33!"<<endl;
